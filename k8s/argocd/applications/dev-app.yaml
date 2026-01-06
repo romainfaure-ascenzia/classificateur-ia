@@ -1,0 +1,20 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: classificateur-ia-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rom55555/classificateur-ia.git
+    targetRevision: main
+    path: k8s/envs/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

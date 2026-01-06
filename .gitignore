@@ -1,0 +1,40 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Modèles ML (gros fichiers)
+*.h5
+*.pb
+*.tflite
+*.onnx
+*.pth
+*.pt
+labels_mobilenet_quant_v1_224.txt
+mobilenet_v1_1.0_224_quant.tflite
+
+# Logs
+*.log
+
+# Mac
+__MACOSX/
+
+# Kubernetes configs locales (optionnel)
+# _test/

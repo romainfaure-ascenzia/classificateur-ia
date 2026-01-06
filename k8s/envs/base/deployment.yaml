@@ -1,0 +1,40 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: classificateur-ia
+  labels:
+    app: classificateur-ia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: classificateur-ia
+  template:
+    metadata:
+      labels:
+        app: classificateur-ia
+    spec:
+      containers:
+      - name: classificateur-ia
+        image: rom55555/classificateur-ia:v1.0.0
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5

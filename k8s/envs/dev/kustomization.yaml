@@ -1,0 +1,19 @@
+﻿apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dev
+
+namePrefix: dev-
+
+commonLabels:
+  environment: dev
+
+bases:
+  - ../base
+
+patches:
+  - path: patches/deployment-patch.yaml
+
+images:
+  - name: rom55555/classificateur-ia
+    newTag: v1.0.0
