@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1
+﻿apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: classificateur-ia-root
@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-        repoURL: https://github.com/romainfaure-ascenzia/classificateur-ia.git
+    repoURL: https://github.com/romainfaure-ascenzia/classificateur-ia.git
     targetRevision: main
     path: k8s/argocd/applications
   destination:
