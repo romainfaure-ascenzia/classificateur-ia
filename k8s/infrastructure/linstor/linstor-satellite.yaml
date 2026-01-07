@@ -1,0 +1,35 @@
+﻿apiVersion: piraeus.io/v1
+kind: LinstorSatelliteConfiguration
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"piraeus.io/v1","kind":"LinstorSatelliteConfiguration","metadata":{"annotations":{},"name":"talos-loader-override"},"spec":{"podTemplate":{"spec":{"initContainers":[{"$patch":"delete","name":"drbd-shutdown-guard"},{"$patch":"delete","name":"drbd-module-loader"}],"volumes":[{"$patch":"delete","name":"run-systemd-system"},{"$patch":"delete","name":"run-drbd-shutdown-guard"},{"$patch":"delete","name":"systemd-bus-socket"},{"$patch":"delete","name":"lib-modules"},{"$patch":"delete","name":"usr-src"},{"hostPath":{"path":"/var/etc/lvm/backup","type":"DirectoryOrCreate"},"name":"etc-lvm-backup"},{"hostPath":{"path":"/var/etc/lvm/archive","type":"DirectoryOrCreate"},"name":"etc-lvm-archive"}]}}}}
+  name: talos-loader-override
+spec:
+  podTemplate:
+    spec:
+      initContainers:
+      - $patch: delete
+        name: drbd-shutdown-guard
+      - $patch: delete
+        name: drbd-module-loader
+      volumes:
+      - $patch: delete
+        name: run-systemd-system
+      - $patch: delete
+        name: run-drbd-shutdown-guard
+      - $patch: delete
+        name: systemd-bus-socket
+      - $patch: delete
+        name: lib-modules
+      - $patch: delete
+        name: usr-src
+      - hostPath:
+          path: /var/etc/lvm/backup
+          type: DirectoryOrCreate
+        name: etc-lvm-backup
+      - hostPath:
+          path: /var/etc/lvm/archive
+          type: DirectoryOrCreate
+        name: etc-lvm-archive
+

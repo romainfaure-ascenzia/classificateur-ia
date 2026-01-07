@@ -1,0 +1,9 @@
+﻿apiVersion: piraeus.io/v1
+kind: LinstorCluster
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"piraeus.io/v1","kind":"LinstorCluster","metadata":{"annotations":{},"name":"linstorcluster"},"spec":{}}
+  name: linstorcluster
+spec: {}
+

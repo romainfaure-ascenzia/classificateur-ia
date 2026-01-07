@@ -1,0 +1,16 @@
+﻿allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"allowVolumeExpansion":true,"apiVersion":"storage.k8s.io/v1","kind":"StorageClass","metadata":{"annotations":{},"name":"linstor-replicated"},"parameters":{"linstor.csi.linbit.com/placementCount":"2","linstor.csi.linbit.com/storagePool":"lvm-pool"},"provisioner":"linstor.csi.linbit.com","volumeBindingMode":"WaitForFirstConsumer"}
+    storageclass.kubernetes.io/is-default-class: "false"
+  name: linstor-replicated
+parameters:
+  linstor.csi.linbit.com/placementCount: "2"
+  linstor.csi.linbit.com/storagePool: lvm-pool
+provisioner: linstor.csi.linbit.com
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+
