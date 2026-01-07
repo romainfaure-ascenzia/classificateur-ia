@@ -18,7 +18,7 @@ spec:
       - name: classificateur-ia
         image: rom55555/classificateur-ia:v1.0.0
         ports:
-        - containerPort: 8000
+        - containerPort: 8501
         resources:
           requests:
             memory: "128Mi"
@@ -28,13 +28,16 @@ spec:
             cpu: "200m"
         livenessProbe:
           httpGet:
-            path: /health
-            port: 8000
+            path: /
+            port: 8501
           initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
           httpGet:
-            path: /health
-            port: 8000
-          initialDelaySeconds: 5
+            path: /
+            port: 8501
+          initialDelaySeconds: 10
           periodSeconds: 5
+        env:
+        - name: ENVIRONMENT
+          value: "base"
