@@ -38,3 +38,6 @@ __MACOSX/
 
 # Kubernetes configs locales (optionnel)
 # _test/
+
+# Monitoring working directory (pas le dossier k8s/envs/monitoring !)
+/monitoring/
