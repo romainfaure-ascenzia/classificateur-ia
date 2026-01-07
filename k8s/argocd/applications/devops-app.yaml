@@ -1,0 +1,37 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devtron
+  namespace: argocd
+spec:
+  destination:
+    namespace: devtroncd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: devtron-operator
+    helm:
+      values: |
+        installer:
+          release: "production"
+        storageClass: "linstor-simple-pool2"
+        monitoring:
+          grafana:
+            enabled: false
+          prometheus:
+            enabled: false
+        components:
+          devtron:
+            service:
+              type: LoadBalancer
+          postgres:
+            persistence:
+              volumeSize: "2Gi"
+    repoURL: https://helm.devtron.ai
+    targetRevision: 0.22.99
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

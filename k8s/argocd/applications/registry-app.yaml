@@ -1,0 +1,33 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: zot
+  namespace: argocd
+spec:
+  destination:
+    namespace: zot
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: zot
+    helm:
+      values: |
+        replicaCount: 1
+        persistence:
+          enabled: true
+          storageClass: "linstor-replicated"
+          size: 8Gi
+        service:
+          type: LoadBalancer
+        metrics:
+          enabled: true
+          serviceMonitor:
+            enabled: true
+    repoURL: https://zotregistry.dev/helm-charts/
+    targetRevision: 0.1.95
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

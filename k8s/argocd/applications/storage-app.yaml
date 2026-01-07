@@ -1,0 +1,20 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linstor-operator
+  namespace: argocd
+spec:
+  destination:
+    namespace: piraeus-datastore
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: piraeus-operator
+    repoURL: https://piraeus.io/helm-charts/
+    targetRevision: 2.*
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
